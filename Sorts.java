@@ -3,9 +3,9 @@ public class Sorts {
 
     // Insertion:
     // RL one by one swap
-    public static int[] InsertionSort_1(int[] Array) {
+    public static void InsertionSort_1(int[] Array) {
 
-        for (int i = 1; i < A.length; i++) {
+        for (int i = 1; i < Array.length; i++) {
 
             int temp = Array[i];
             int j = i - 1;
@@ -17,35 +17,33 @@ public class Sorts {
             Array[j + 1] = temp;
         }
 
-        return A;
     }
 
     // LR one by one swap
-    public static int[] InsertionSort_2(int[] Array) {
+    public static void InsertionSort_2(int[] Array) {
 
-        for (int i = A.length - 1; i > -1; i--) {
+        for (int i = Array.length - 1; i > -1; i--) {
 
             int temp = Array[i];
             int j = i + 1;
 
-            for (; (j < A.length && temp > Array[j]); ++j) {
+            for (; (j < Array.length && temp > Array[j]); ++j) {
                 Array[j - 1] = Array[j];
             }
 
             Array[j - 1] = temp;
         }
 
-        return A;
     }
 
     // R find min swap
-    public static int[] InsertionSort_3(int[] Array) {
+    public static void InsertionSort_3(int[] Array) {
 
-        for (int i = 0; i < A.length; i++) {
+        for (int i = 0; i < Array.length; i++) {
             int min = Array[i];
             int index = i;
 
-            for (int j = 1 + i; j < A.length; j++) {
+            for (int j = 1 + i; j < Array.length; j++) {
                 if (Array[j] < min) {
                     min = Array[j];
                     index = j;
@@ -56,13 +54,12 @@ public class Sorts {
             Array[i] = min;
         }
 
-        return A;
     }
 
     // L find max swap
-    public static int[] InsertionSort_4(int[] Array) {
+    public static void InsertionSort_4(int[] Array) {
 
-        for (int i = A.length - 1; i > -1; i--) {
+        for (int i = Array.length - 1; i > -1; i--) {
             int max = Array[i];
             int index = i;
 
@@ -77,15 +74,14 @@ public class Sorts {
             Array[i] = max;
         }
 
-        return A;
     }
 
     // Bubble:
     // R
-    public static int[] BubbleSort_1(int[] Array) {
+    public static void BubbleSort_1(int[] Array) {
 
-        for (int i = 0; i < A.length; i++) {
-            for (int j = 0; j < A.length - i - 1; j++) {
+        for (int i = 0; i < Array.length; i++) {
+            for (int j = 0; j < Array.length - i - 1; j++) {
                 if (Array[j + 1] < Array[j]) {
                     int temp = Array[j];
                     Array[j] = Array[j + 1];
@@ -94,14 +90,13 @@ public class Sorts {
             }
         }
 
-        return A;
     }
 
     // L
-    public static int[] BubbleSort_2(int[] Array) {
+    public static void BubbleSort_2(int[] Array) {
 
-        for (int i = 0; i < A.length; i++) {
-            for (int j = A.length - i - 1; j > 0; j--) {
+        for (int i = 0; i < Array.length; i++) {
+            for (int j = Array.length - i - 1; j > 0; j--) {
                 if (Array[j - 1] > Array[j]) {
                     int temp = Array[j];
                     Array[j] = Array[j - 1];
@@ -110,9 +105,10 @@ public class Sorts {
             }
         }
 
-        return A;
     }
 
     // Quick:
-    public 
+    public static void QuickSort(int[] Array) {
+
+    }
 }
