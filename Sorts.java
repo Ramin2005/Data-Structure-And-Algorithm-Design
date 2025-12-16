@@ -108,7 +108,38 @@ public class Sorts {
     }
 
     // Quick:
-    public static void QuickSort(int[] Array) {
+    public static void QuickSort(int[] Array, int l, int u) {
+        if (l == u) {
+            return;
+        }
+        int place = place(Array, l, u);
+        QuickSort(Array, l, place);
+        QuickSort(Array, place, u);
+    }
 
+    private static int place(int[] Array, int l, int u) {
+        int left = l;
+        int right = u;
+
+        while (right > left) {
+            while (Array[left] <= Array[right]) {
+                ++left;
+            }
+            while (Array[right] > Array[left]) {
+                --right;
+            }
+
+            if (left < right) {
+                int temp = Array[left];
+                Array[left] = Array[right];
+                Array[right] = temp;
+            }
+        }
+
+        int temp = Array[left];
+        Array[left] = Array[right];
+        Array[right] = temp;
+
+        return right;
     }
 }
