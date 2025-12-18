@@ -50,15 +50,33 @@ public class ShapeShifter {
 
                 } else {
 
-                    String operatorsStackTop = operatorsStack.pop();
+                    String operatorsStackTop1 = operatorsStack.pop();
+                    String operatorsStackTop2 = "";
 
-                    if (priorityCheck(token, operatorsStackTop, operatorsPriorityTable)) {
+                    if (priorityCheck(token, operatorsStackTop1, operatorsPriorityTable)) {
 
+                        String temp1 = valuesStack.pop();
+                        String temp2 = valuesStack.pop();
+
+                        String temp3 = temp2 + " " + temp1 + " " + operatorsStackTop1;
+
+                        valuesStack.push(temp3);
+
+                        operatorsStackTop1 = token;
                         operatorsStack.push(token);
+
+                        while (!operatorsStack.isEmpty() && ){
+
+                        }
 
                     } else {
 
+                        operatorsStack.push(operatorsStackTop1);
+                        operatorsStack.push(token);
+
                     }
+
+
 
                 }
 
@@ -73,16 +91,19 @@ public class ShapeShifter {
         return null;
     }
 
-    private static boolean priorityCheck(String newOperator, String topOperator, Hashtable<String, Integer> operatorsPriorityTable) {
+    private static boolean priorityCheck(String newOperator, String topOperator,
+            Hashtable<String, Integer> operatorsPriorityTable) {
 
         int newOperatorPriority = operatorsPriorityTable.get(newOperator);
 
         if (topOperator.equals("(")) {
 
-            return true;
+            return false;
 
         } else {
-            return operatorsPriorityTable.get(topOperator) < newOperatorPriority;
+
+            return operatorsPriorityTable.get(topOperator) >= newOperatorPriority;
+
         }
     }
 }
