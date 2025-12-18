@@ -46,7 +46,13 @@ public class ShapeShifter {
             } // operator part:
             else if (operatorSet.contains(token)) {
 
-                //stack empty part:
+                if (valuesStack.isEmpty()) {
+
+                    throw new InvalidDataInputException("Infixed string is invalid!");
+
+                }
+
+                // operators stack empty part:
                 if (operatorsStack.empty()) {
 
                     operatorsStack.push(token);
@@ -76,6 +82,7 @@ public class ShapeShifter {
                         }
                         operatorsStack.push(token);
 
+                        // check for next stack operator priority 
                         while (operatorsStackTop2 != null) {
                             if (priorityCheck(operatorsStackTop1, operatorsStackTop2, operatorsPriorityTable)) {
 
