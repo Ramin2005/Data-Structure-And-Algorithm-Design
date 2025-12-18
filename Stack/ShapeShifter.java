@@ -34,26 +34,30 @@ public class ShapeShifter {
         Stack<String> operatorsStack = new Stack<>();
         Stack<String> valuesStack = new Stack<>();
 
-        for (int i = 0; i < tokenized.length; i++) {
-            String token = tokenized[i];
-
+        for (String token : tokenized) {
+            // ( part
             if (token.equals("(")) {
 
                 operatorsStack.push(token);
 
-            } else if (token.equals(")")) {
+            } // ) part
+            else if (token.equals(")")) {
 
-            } else if (operatorSet.contains(token)) {
+            } // operator part:
+            else if (operatorSet.contains(token)) {
 
+                //stack empty part:
                 if (operatorsStack.empty()) {
 
                     operatorsStack.push(token);
 
-                } else {
+                } // non-empty part:
+                else {
 
                     String operatorsStackTop1 = operatorsStack.getFirst();
                     String operatorsStackTop2 = null;
 
+                    // high priority part:
                     if (priorityCheck(token, operatorsStackTop1, operatorsPriorityTable)) {
 
                         operatorsStackTop1 = operatorsStack.pop();
@@ -72,23 +76,52 @@ public class ShapeShifter {
                         }
                         operatorsStack.push(token);
 
-                        
+                        while (operatorsStackTop2 != null) {
+                            if (priorityCheck(operatorsStackTop1, operatorsStackTop2, operatorsPriorityTable)) {
 
-                    } else {
+                                operatorsStackTop1 = operatorsStack.pop();
+                                operatorsStackTop2 = operatorsStack.pop();
+                                temp1 = valuesStack.pop();
+                                temp2 = valuesStack.pop();
 
-                        operatorsStack.push(operatorsStackTop1);
+                                temp3 = temp2 + " " + temp1 + " " + operatorsStackTop2;
+
+                                valuesStack.push(temp3);
+
+                                if (!operatorsStack.isEmpty()) {
+
+                                    operatorsStackTop2 = operatorsStack.getFirst();
+
+                                } else {
+
+                                    operatorsStackTop2 = null;
+
+                                }
+
+                                operatorsStack.push(operatorsStackTop1);
+
+                            } else {
+
+                                operatorsStackTop2 = null;
+
+                            }
+                        }
+
+                    } // low priority part:
+                    else {
+
                         operatorsStack.push(token);
 
                     }
 
                 }
 
-            } else {
+            } // value part: 
+            else {
 
                 valuesStack.push(token);
 
             }
-
         }
 
         return null;
