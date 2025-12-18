@@ -8,6 +8,8 @@ public class ShapeShifter {
     // infix to postfix:
     public static String inFixToPostFix(String inFixed, HashSet<String> operatorSet,
             Hashtable<String, Integer> operatorsPriorityTable) {
+
+        // input check statement:
         if (operatorSet.size() != operatorsPriorityTable.size()) {
 
             throw new InvalidDataInputException("Operators set and operators priority table must be has same size!");
@@ -29,11 +31,13 @@ public class ShapeShifter {
 
         }
 
+        // help data structures:
         String[] tokenized = inFixed.split(" ");
 
         Stack<String> operatorsStack = new Stack<>();
         Stack<String> valuesStack = new Stack<>();
 
+        // priority making:
         for (String token : tokenized) {
             // ( part
             if (token.equals("(")) {
@@ -61,7 +65,7 @@ public class ShapeShifter {
                     }
                     String temp2 = valuesStack.pop();
 
-                    String temp3 = temp2 + " " + temp2 + " " + operatorsStackTop;
+                    String temp3 = temp2 + " " + temp1 + " " + operatorsStackTop;
 
                     valuesStack.push(temp3);
                     operatorsStackTop = operatorsStack.pop();
@@ -156,7 +160,37 @@ public class ShapeShifter {
             }
         }
 
-        return null;
+        // take ready for output:
+        while (!operatorsStack.isEmpty()) {
+
+            if (valuesStack.isEmpty()) {
+
+                throw new InvalidDataInputException("Infixed string is invalid!");
+
+            }
+            String temp1 = valuesStack.pop();
+
+            if (valuesStack.isEmpty()) {
+
+                throw new InvalidDataInputException("Infixed string is invalid!");
+
+            }
+            String temp2 = valuesStack.pop();
+
+            String temp3 = temp2 + " " + temp1 + " " + operatorsStack.pop();
+
+            valuesStack.push(temp3);
+        }
+
+        // output check statement:
+        String out = valuesStack.pop();
+
+        if (!valuesStack.isEmpty()) {
+
+            throw new InvalidDataInputException("Infixed string is invalid!");
+
+        }
+        return out;
     }
 
     private static boolean priorityCheck(String newOperator, String topOperator,
