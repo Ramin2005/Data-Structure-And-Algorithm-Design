@@ -89,7 +89,7 @@ public class ShapeShifter {
                 } // non-empty part:
                 else {
 
-                    String operatorsStackTop1 = operatorsStack.getFirst();
+                    String operatorsStackTop1 = operatorsStack.getLast();
                     String operatorsStackTop2 = null;
 
                     // high priority part:
@@ -106,7 +106,7 @@ public class ShapeShifter {
                         operatorsStackTop1 = token;
                         if (!operatorsStack.isEmpty()) {
 
-                            operatorsStackTop2 = operatorsStack.getFirst();
+                            operatorsStackTop2 = operatorsStack.getLast();
 
                         }
                         operatorsStack.push(token);
@@ -126,7 +126,7 @@ public class ShapeShifter {
 
                                 if (!operatorsStack.isEmpty()) {
 
-                                    operatorsStackTop2 = operatorsStack.getFirst();
+                                    operatorsStackTop2 = operatorsStack.getLast();
 
                                 } else {
 
@@ -208,4 +208,5 @@ public class ShapeShifter {
 
         }
     }
+
 }
