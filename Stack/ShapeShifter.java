@@ -6,7 +6,29 @@ import java.util.Stack;
 public class ShapeShifter {
 
     // infix to postfix:
-    public static String inFixToPostFix(String inFixed, HashSet<String> operatorSet, Hashtable<String, Integer> priority) {
+    public static String inFixToPostFix(String inFixed, HashSet<String> operatorSet,
+            Hashtable<String, Integer> operatorsPriorityTable) {
+        if (operatorSet.size() != operatorsPriorityTable.size()) {
+
+            throw new InvalidDataInputException("Operators set and operators priority table must be has same size!");
+
+        } else {
+
+            for (String operator : operatorSet) {
+
+                try {
+
+                    operatorsPriorityTable.get(operator);
+
+                } catch (Exception e) {
+
+                    throw new InvalidDataInputException(e.getMessage());
+
+                }
+            }
+
+        }
+
         String[] tokenized = inFixed.split(" ");
 
         Stack<String> operatorsStack = new Stack<>();
@@ -30,7 +52,7 @@ public class ShapeShifter {
 
                     String operatorsStackTop = operatorsStack.pop();
 
-                    if (0) {
+                    if (priorityCheck(token, operatorsStackTop, operatorsPriorityTable)) {
 
                         operatorsStack.push(token);
 
@@ -49,5 +71,18 @@ public class ShapeShifter {
         }
 
         return null;
+    }
+
+    private static boolean priorityCheck(String newOperator, String topOperator, Hashtable<String, Integer> operatorsPriorityTable) {
+
+        int newOperatorPriority = operatorsPriorityTable.get(newOperator);
+
+        if (topOperator.equals("(")) {
+
+            return true;
+
+        } else {
+            return operatorsPriorityTable.get(topOperator) < newOperatorPriority;
+        }
     }
 }
