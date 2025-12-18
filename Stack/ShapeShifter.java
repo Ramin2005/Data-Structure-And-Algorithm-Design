@@ -228,4 +228,8 @@ public class ShapeShifter {
         }
     }
 
+    // postfixed to infix
+    public static String postFixToInFix(String postFixed, HashSet<String> operatorsSet) {
+
+    }
 }
