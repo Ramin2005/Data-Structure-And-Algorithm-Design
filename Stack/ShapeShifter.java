@@ -9,6 +9,14 @@ public class ShapeShifter {
     public static String inFixToPostFix(String inFixed, HashSet<String> operatorSet,
             Hashtable<String, Integer> operatorsPriorityTable) {
 
+        // first adds a space to the left end right of all "(" and ")" 
+        // after replace all spaces,tabs and next lines with one space
+        // after remove spaces of the left and right
+        String clone = inFixed
+                .replaceAll("\\s*([()])\\s*", " $1 ")
+                .replaceAll("\\s+", " ")
+                .trim();
+
         // input check statement:
         if (operatorSet.size() != operatorsPriorityTable.size()) {
 
@@ -32,7 +40,7 @@ public class ShapeShifter {
         }
 
         // help data structures:
-        String[] tokenized = inFixed.split(" ");
+        String[] tokenized = clone.split(" ");
 
         Stack<String> operatorsStack = new Stack<>();
         Stack<String> valuesStack = new Stack<>();
