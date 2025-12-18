@@ -6,8 +6,18 @@ import java.util.Stack;
 public class ShapeShifter {
 
     // infix to postfix:
+    /**
+     *
+     * Converts any infix string to postfix string.
+     *
+     * @param inFixed - Infixed string
+     * @param operatorSet - HashSet of operators
+     * @param operatorsPriorityTable - Hashtable of priority of operators
+     * @return string - Returns postfixed string
+     * @throws InvalidDataInputException
+     */
     public static String inFixToPostFix(String inFixed, HashSet<String> operatorSet,
-            Hashtable<String, Integer> operatorsPriorityTable) {
+            Hashtable<String, Integer> operatorsPriorityTable) throws InvalidDataInputException {
 
         // taking ready input for tokenize
         String clone = inFixed
@@ -16,7 +26,7 @@ public class ShapeShifter {
                 .replaceAll("\\s+", " ")
                 // after replace all spaces,tabs and next lines with one space
                 .trim();
-                // after remove spaces of the left and right
+        // after remove spaces of the left and right
 
         // input check statement:
         if (operatorSet.size() != operatorsPriorityTable.size()) {
