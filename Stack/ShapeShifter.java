@@ -43,6 +43,31 @@ public class ShapeShifter {
             } // ) part
             else if (token.equals(")")) {
 
+                String operatorsStackTop = operatorsStack.pop();
+
+                while (!operatorsStackTop.equals("(")) {
+
+                    if (valuesStack.isEmpty()) {
+
+                        throw new InvalidDataInputException("Infixed string is invalid!");
+
+                    }
+                    String temp1 = valuesStack.pop();
+
+                    if (valuesStack.isEmpty()) {
+
+                        throw new InvalidDataInputException("Infixed string is invalid!");
+
+                    }
+                    String temp2 = valuesStack.pop();
+
+                    String temp3 = temp2 + " " + temp2 + " " + operatorsStackTop;
+
+                    valuesStack.push(temp3);
+                    operatorsStackTop = operatorsStack.pop();
+
+                }
+
             } // operator part:
             else if (operatorSet.contains(token)) {
 
