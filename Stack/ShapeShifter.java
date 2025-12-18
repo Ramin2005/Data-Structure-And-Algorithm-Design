@@ -34,7 +34,8 @@ public class ShapeShifter {
         Stack<String> operatorsStack = new Stack<>();
         Stack<String> valuesStack = new Stack<>();
 
-        for (String token : tokenized) {
+        for (int i = 0; i < tokenized.length; i++) {
+            String token = tokenized[i];
 
             if (token.equals("(")) {
 
@@ -50,11 +51,12 @@ public class ShapeShifter {
 
                 } else {
 
-                    String operatorsStackTop1 = operatorsStack.pop();
-                    String operatorsStackTop2 = "";
+                    String operatorsStackTop1 = operatorsStack.getFirst();
+                    String operatorsStackTop2 = null;
 
                     if (priorityCheck(token, operatorsStackTop1, operatorsPriorityTable)) {
 
+                        operatorsStackTop1 = operatorsStack.pop();
                         String temp1 = valuesStack.pop();
                         String temp2 = valuesStack.pop();
 
@@ -63,11 +65,14 @@ public class ShapeShifter {
                         valuesStack.push(temp3);
 
                         operatorsStackTop1 = token;
-                        operatorsStack.push(token);
+                        if (!operatorsStack.isEmpty()) {
 
-                        while (!operatorsStack.isEmpty() && ){
+                            operatorsStackTop2 = operatorsStack.getFirst();
 
                         }
+                        operatorsStack.push(token);
+
+                        
 
                     } else {
 
@@ -75,8 +80,6 @@ public class ShapeShifter {
                         operatorsStack.push(token);
 
                     }
-
-
 
                 }
 
