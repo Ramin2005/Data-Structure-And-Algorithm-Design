@@ -313,12 +313,12 @@ public class ShapeShifter {
         return out;
     }
 
-    // postfixed to infix
+    // prefixed to infix
     /**
      *
-     * Converts any postfix string to infix string.
+     * Converts any prefix string to infix string.
      *
-     * @param String - Postfixed string
+     * @param String - Prefixed string
      * @param HashSet - HashSet of operators
      * @return String - Returns infixed string
      * @throws InvalidDataInputException - If have invalid data in input
