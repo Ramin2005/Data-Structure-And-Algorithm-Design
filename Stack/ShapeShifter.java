@@ -317,6 +317,7 @@ public class ShapeShifter {
     public static void main(String[] args) {
         String temp1 = "e a b + c * d ^ + ";
         String temp2 = "e +  ((a + b) * c) ^ d";
+        String temp3 = "x - y - z * (a + b)";
 
         HashSet<String> op = new HashSet<>();
         HashMap<String, Integer> pr = new HashMap<>();
@@ -333,7 +334,7 @@ public class ShapeShifter {
         pr.put("^", 3);
 
         clearConsole();
-        System.out.println(inFixToPostFix(temp2, op, pr));
+        System.out.println(inFixToPostFix(temp3, op, pr));
         System.out.println(postFixToInFix(inFixToPostFix(temp2, op, pr), op));
         System.out.println(inFixToPostFix(postFixToInFix(temp1, op), op, pr));
         System.out.println(postFixToInFix(temp1, op));
