@@ -11,31 +11,26 @@ public class ShapeShifter {
      * Converts any infix string to postfix string.
      *
      * @param inFixed - Infixed string
-     * @param operatorSet - HashSet of operators
+     * @param operatorsSet - HashSet of operators
      * @param operatorsPriorityTable - Hashtable of priority of operators
      * @return string - Returns postfixed string
      * @throws InvalidDataInputException
      */
-    public static String inFixToPostFix(String inFixed, HashSet<String> operatorSet,
+    public static String inFixToPostFix(String inFixed, HashSet<String> operatorsSet,
             Hashtable<String, Integer> operatorsPriorityTable) throws InvalidDataInputException {
 
-        // taking ready input for tokenize
-        String clone = inFixed
-                .replaceAll("\\s*([()])\\s*", " $1 ")
-                // first adds a space to the left end right of all "(" and ")" 
-                .replaceAll("\\s+", " ")
-                // after replace all spaces,tabs and next lines with one space
-                .trim();
-        // after remove spaces of the left and right
-
         // input check statement:
-        if (operatorSet.size() != operatorsPriorityTable.size()) {
+        if (operatorsSet.isEmpty()) {
+
+            throw new InvalidDataInputException("Operator set must have at least one element!");
+
+        } else if (operatorsSet.size() != operatorsPriorityTable.size()) {
 
             throw new InvalidDataInputException("Operators set and operators priority table must be has same size!");
 
         } else {
 
-            for (String operator : operatorSet) {
+            for (String operator : operatorsSet) {
 
                 try {
 
@@ -49,6 +44,15 @@ public class ShapeShifter {
             }
 
         }
+
+        // taking ready input for tokenize
+        String clone = inFixed
+                .replaceAll("\\s*([()])\\s*", " $1 ")
+                // first adds a space to the left end right of all "(" and ")" 
+                .replaceAll("\\s+", " ")
+                // after replace all spaces,tabs and next lines with one space
+                .trim();
+        // after remove spaces of the left and right
 
         // help data structures:
         String[] tokenized = clone.split(" ");
@@ -92,7 +96,7 @@ public class ShapeShifter {
                 }
 
             } // operator part:
-            else if (operatorSet.contains(token)) {
+            else if (operatorsSet.contains(token)) {
 
                 if (valuesStack.isEmpty()) {
 
@@ -230,6 +234,25 @@ public class ShapeShifter {
 
     // postfixed to infix
     public static String postFixToInFix(String postFixed, HashSet<String> operatorsSet) {
+
+        // input check statement:
+        if (operatorsSet.isEmpty()) {
+
+            throw new InvalidDataInputException("Operator set must have at least one element!");
+
+        }
+
+        // taking ready input for tokenize
+        String clone = postFixed
+                .replaceAll("\\s*([()])\\s*", " $1 ")
+                // first adds a space to the left end right of all "(" and ")" 
+                .replaceAll("\\s+", " ")
+                // after replace all spaces,tabs and next lines with one space
+                .trim();
+        // after remove spaces of the left and right
+
+        // help data structures:
+        String[] tokenized = clone.split(" ");
 
     }
 }
