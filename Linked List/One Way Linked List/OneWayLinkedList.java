@@ -108,7 +108,45 @@ public class OneWayLinkedList {
 
             this.last = tempBefore;
             out = temp.getValue();
+            --this.size;
 
+        }
+
+        return out;
+    }
+
+    public Object pop(int n) {
+
+        if (isEmpty()) {
+
+            throw new RuntimeException("List is empty!");
+
+        }
+
+        if (n >= this.size) {
+
+            throw new RuntimeException("Index out of bounds!");
+
+        }
+
+        Object out;
+
+        if (this.size == 1) {
+
+            out = this.head.getValue();
+            this.head = this.last = null;
+            --this.size;
+
+        } else {
+            Node temp = this.head;
+
+            for (int i = 1; i < n + 1; i++) {
+
+                temp = temp.getNext();
+
+            }
+
+            out = temp.getValue();
         }
 
         return out;
