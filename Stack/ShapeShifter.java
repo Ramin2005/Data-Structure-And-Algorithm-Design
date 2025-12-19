@@ -303,4 +303,40 @@ public class ShapeShifter {
         return out;
     }
 
+    //test method
+    public static void main(String[] args) {
+        String temp1 = "e a b + c * d ^ + ";
+        String temp2 = "e +  ((a + b) * c) ^ d";
+
+        HashSet<String> op = new HashSet<>();
+        Hashtable<String, Integer> pr = new Hashtable<>();
+
+        op.add("+");
+        pr.put("+", 1);
+        op.add("-");
+        pr.put("-", 1);
+        op.add("*");
+        pr.put("*", 2);
+        op.add("/");
+        pr.put("/", 2);
+        op.add("^");
+        pr.put("^", 3);
+
+        clearConsole();
+        System.out.println(inFixToPostFix(temp2, op, pr));
+        System.out.println(postFixToInFix(inFixToPostFix(temp2, op, pr), op));
+        System.out.println(inFixToPostFix(postFixToInFix(temp1, op), op, pr));
+        System.out.println(postFixToInFix(temp1, op));
+
+    }
+
+    public static void clearConsole() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            }
+        } catch (Exception e) {
+            System.out.println("Error trying to clear console.");
+        }
+    }
 }
