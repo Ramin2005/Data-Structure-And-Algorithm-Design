@@ -17,8 +17,7 @@ public class OneWayLinkedList {
 
             if (this.size < 1) {
 
-                this.head = temp;
-                this.last = temp;
+                this.head = this.last = temp;
                 ++this.size;
 
             } else {
@@ -39,8 +38,7 @@ public class OneWayLinkedList {
 
         if (this.size < 1) {
 
-            this.head = temp;
-            this.last = temp;
+            this.head = this.last = temp;
             ++this.size;
 
         } else {
