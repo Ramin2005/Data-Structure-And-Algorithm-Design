@@ -40,7 +40,7 @@ public class Sorts {
 
     // Selection:
     // R find min swap
-    public static void InsertionSort_3(int[] Array) {
+    public static void SelectionSort_1(int[] Array) {
 
         for (int i = 0; i < Array.length; i++) {
             int min = Array[i];
@@ -60,7 +60,7 @@ public class Sorts {
     }
 
     // L find max swap
-    public static void InsertionSort_4(int[] Array) {
+    public static void SelectionSort_2(int[] Array) {
 
         for (int i = Array.length - 1; i > -1; i--) {
             int max = Array[i];
