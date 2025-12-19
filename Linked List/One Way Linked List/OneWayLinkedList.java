@@ -1,5 +1,4 @@
 
-
 public class OneWayLinkedList {
 
     private Node head = null;
@@ -73,6 +72,42 @@ public class OneWayLinkedList {
             out = this.head.getValue();
             this.head = this.head.getNext();
             --this.size;
+
+        }
+
+        return out;
+    }
+
+    public Object popLast() {
+
+        if (isEmpty()) {
+
+            throw new RuntimeException("List is empty!");
+
+        }
+
+        Object out;
+
+        if (this.size == 1) {
+
+            out = this.head.getValue();
+            this.head = this.last = null;
+            --this.size;
+
+        } else {
+
+            Node tempBefore = this.head;
+            Node temp = this.head;
+
+            while (temp.hasNext()) {
+
+                tempBefore = temp;
+                temp = temp.getNext();
+
+            }
+
+            this.last = tempBefore;
+            out = temp.getValue();
 
         }
 
