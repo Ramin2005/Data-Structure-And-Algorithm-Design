@@ -177,25 +177,26 @@ public class Knight {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter size of board: ");
-        int size = sc.nextInt();
-        System.out.println("");
-
-        System.out.print("Enter start x position: ");
-        int x_1 = sc.nextInt();
-
-        System.out.print("Enter start y position: ");
-        int y_1 = sc.nextInt();
-        System.out.println("");
-
-        System.out.print("Enter end x position: ");
-        int x_2 = sc.nextInt();
-
-        System.out.print("Enter end y position: ");
-        int y_2 = sc.nextInt();
-        System.out.println("");
+        int size;
+        int x_1;
+        int y_1;
+        int x_2;
+        int y_2;
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.print("Enter size of board: ");
+            size = sc.nextInt();
+            System.out.println("");
+            System.out.print("Enter start x position: ");
+            x_1 = sc.nextInt();
+            System.out.print("Enter start y position: ");
+            y_1 = sc.nextInt();
+            System.out.println("");
+            System.out.print("Enter end x position: ");
+            x_2 = sc.nextInt();
+            System.out.print("Enter end y position: ");
+            y_2 = sc.nextInt();
+            System.out.println("");
+        }
 
         int[][] board = new int[size][size];
 
