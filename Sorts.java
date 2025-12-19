@@ -145,7 +145,13 @@ public class Sorts {
         int temp = Array[l];
         Array[l] = Array[right];
         Array[right] = temp;
+
         return right;
+    }
+
+    // Merge"
+    public static void MergeSort(int[] Array) {
+
     }
 
     public static void main(String[] args) {
