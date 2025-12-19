@@ -33,6 +33,12 @@ public class Node {
 
     }
 
+    public boolean hasNext() {
+
+        return this.next != null;
+
+    }
+
     public Node getNext() {
 
         return next;
