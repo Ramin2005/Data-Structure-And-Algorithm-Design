@@ -15,7 +15,7 @@ public class OneWayLinkedList {
 
             Node temp = new Node(value);
 
-            if (this.isEmpty()) {
+            if (this.size < 1) {
 
                 this.head = temp;
                 this.last = temp;
@@ -33,7 +33,25 @@ public class OneWayLinkedList {
 
     }
 
+    public void add(Object value) {
 
+        Node temp = new Node(value);
+
+        if (this.size < 1) {
+
+            this.head = temp;
+            this.last = temp;
+            ++this.size;
+
+        } else {
+
+            this.last.setNext(temp);
+            this.last = temp;
+            ++this.size;
+
+        }
+
+    }
 
     public boolean isEmpty() {
 
