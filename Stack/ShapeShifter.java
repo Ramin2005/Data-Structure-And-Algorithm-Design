@@ -239,6 +239,15 @@ public class ShapeShifter {
     }
 
     // postfixed to infix
+    /**
+     *
+     * Converts any postfix string to infix string.
+     *
+     * @param postFixed - Postfixed string
+     * @param operatorsSet - HashSet of operators
+     * @return string - Returns infixed string
+     * @throws InvalidDataInputException
+     */
     public static String postFixToInFix(String postFixed, HashSet<String> operatorsSet) {
 
         // input check statement:
