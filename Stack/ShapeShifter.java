@@ -89,7 +89,7 @@ public class ShapeShifter {
                     }
                     String temp2 = valuesStack.pop();
 
-                    String temp3 = temp2 + " " + temp1 + " " + operatorsStackTop;
+                    String temp3 = String.format("%s %s %s", temp2, temp1, operatorsStackTop);
 
                     valuesStack.push(temp3);
                     operatorsStackTop = operatorsStack.pop();
@@ -133,7 +133,7 @@ public class ShapeShifter {
                         }
                         String temp2 = valuesStack.pop();
 
-                        String temp3 = temp2 + " " + temp1 + " " + operatorsStackTop1;
+                        String temp3 = String.format("%s %s %s", temp2, temp1, operatorsStackTop1);
 
                         valuesStack.push(temp3);
 
@@ -160,7 +160,7 @@ public class ShapeShifter {
                                 }
                                 temp2 = valuesStack.pop();
 
-                                temp3 = temp2 + " " + temp1 + " " + operatorsStackTop2;
+                                temp3 = String.format("%s %s %s", temp2, temp1, operatorsStackTop2);
 
                                 valuesStack.push(temp3);
                                 operatorsStack.push(operatorsStackTop1);
@@ -207,7 +207,7 @@ public class ShapeShifter {
             }
             String temp2 = valuesStack.pop();
 
-            String temp3 = temp2 + " " + temp1 + " " + operatorsStack.pop();
+            String temp3 = String.format("%s %s %s", temp2, temp1, operatorsStack.pop());
 
             valuesStack.push(temp3);
         }
@@ -366,7 +366,7 @@ public class ShapeShifter {
                 }
                 String temp2 = help.pop();
 
-                String temp3 = String.format("(%s %S %s)", temp1, token, temp2);
+                String temp3 = String.format("(%s %s %s)", temp1, token, temp2);
 
                 help.push(temp3);
 
