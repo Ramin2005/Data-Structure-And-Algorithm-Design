@@ -313,11 +313,88 @@ public class ShapeShifter {
         return out;
     }
 
+    // postfixed to infix
+    /**
+     *
+     * Converts any postfix string to infix string.
+     *
+     * @param String - Postfixed string
+     * @param HashSet - HashSet of operators
+     * @return String - Returns infixed string
+     * @throws InvalidDataInputException - If have invalid data in input
+     */
+    public static String preFixToInFix(String preFixed, HashSet<String> operatorsSet) {
+
+        // input check statement:
+        if (operatorsSet.isEmpty()) {
+
+            throw new InvalidDataInputException("Operator set must have at least one element!");
+
+        }
+
+        // taking ready input for tokenize
+        String clone = preFixed
+                .replaceAll("\\s*([()])\\s*", " $1 ")
+                // first adds a space to the left end right of all "(" and ")" 
+                .replaceAll("\\s+", " ")
+                // after replace all spaces,tabs and next lines with one space
+                .trim();
+        // after remove spaces of the left and right
+
+        // help data structures:
+        String[] tokenized = clone.split(" ");
+
+        Stack<String> help = new Stack<>();
+
+        for (int i = tokenized.length - 1; i > -1; i--) {
+
+            String token = tokenized[i];
+
+            if (operatorsSet.contains(token)) {
+
+                if (help.isEmpty()) {
+
+                    throw new InvalidDataInputException("Postfix string is invalid!");
+
+                }
+                String temp1 = help.pop();
+
+                if (help.isEmpty()) {
+
+                    throw new InvalidDataInputException("Postfix string is invalid!");
+
+                }
+                String temp2 = help.pop();
+
+                String temp3 = String.format("(%s %S %s)", temp1, token, temp2);
+
+                help.push(temp3);
+
+            } else {
+
+                help.push(token);
+
+            }
+
+        }
+
+        String out = help.pop();
+
+        if (!help.isEmpty()) {
+
+            throw new InvalidDataInputException("Postfix string is invalid!");
+
+        }
+
+        return out;
+    }
+
     //test method
     public static void main(String[] args) {
         String temp1 = "e a b + c * d ^ + ";
         String temp2 = "e +  ((a + b) * c) ^ d";
         String temp3 = "x - y - z * (a + b)";
+        String temp4 = "+ b / * a c d";
 
         HashSet<String> op = new HashSet<>();
         HashMap<String, Integer> pr = new HashMap<>();
@@ -338,6 +415,7 @@ public class ShapeShifter {
         System.out.println(postFixToInFix(inFixToPostFix(temp2, op, pr), op));
         System.out.println(inFixToPostFix(postFixToInFix(temp1, op), op, pr));
         System.out.println(postFixToInFix(temp1, op));
+        System.out.println(preFixToInFix(temp4, op));
 
     }
 
