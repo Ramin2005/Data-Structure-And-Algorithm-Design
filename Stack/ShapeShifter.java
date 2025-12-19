@@ -113,13 +113,23 @@ public class ShapeShifter {
                 else {
 
                     String operatorsStackTop1 = operatorsStack.getLast();
-                    String operatorsStackTop2 = null;
 
                     // high priority part:
                     if (priorityCheck(token, operatorsStackTop1, operatorsPriorityTable)) {
 
                         operatorsStackTop1 = operatorsStack.pop();
+                        if (valuesStack.isEmpty()) {
+
+                            throw new InvalidDataInputException("Infixed string is invalid!");
+
+                        }
                         String temp1 = valuesStack.pop();
+
+                        if (valuesStack.isEmpty()) {
+
+                            throw new InvalidDataInputException("Infixed string is invalid!");
+
+                        }
                         String temp2 = valuesStack.pop();
 
                         String temp3 = temp2 + " " + temp1 + " " + operatorsStackTop1;
@@ -129,41 +139,37 @@ public class ShapeShifter {
                         operatorsStackTop1 = token;
                         if (!operatorsStack.isEmpty()) {
 
-                            operatorsStackTop2 = operatorsStack.getLast();
+                            String operatorsStackTop2 = operatorsStack.getLast();
 
-                        }
-                        operatorsStack.push(token);
-
-                        // check for next stack operator priority 
-                        while (operatorsStackTop2 != null) {
+                            // check for next stack operator priority 
                             if (priorityCheck(operatorsStackTop1, operatorsStackTop2, operatorsPriorityTable)) {
 
-                                operatorsStackTop1 = operatorsStack.pop();
                                 operatorsStackTop2 = operatorsStack.pop();
+                                if (valuesStack.isEmpty()) {
+
+                                    throw new InvalidDataInputException("Infixed string is invalid!");
+
+                                }
                                 temp1 = valuesStack.pop();
+
+                                if (valuesStack.isEmpty()) {
+
+                                    throw new InvalidDataInputException("Infixed string is invalid!");
+
+                                }
                                 temp2 = valuesStack.pop();
 
                                 temp3 = temp2 + " " + temp1 + " " + operatorsStackTop2;
 
                                 valuesStack.push(temp3);
-
-                                if (!operatorsStack.isEmpty()) {
-
-                                    operatorsStackTop2 = operatorsStack.getLast();
-
-                                } else {
-
-                                    operatorsStackTop2 = null;
-
-                                }
-
                                 operatorsStack.push(operatorsStackTop1);
 
-                            } else {
-
-                                operatorsStackTop2 = null;
-
                             }
+
+                        } else {
+
+                            operatorsStack.push(token);
+
                         }
 
                     } // low priority part:
@@ -254,5 +260,47 @@ public class ShapeShifter {
         // help data structures:
         String[] tokenized = clone.split(" ");
 
+        Stack<String> help = new Stack<>();
+
+        for (String token : tokenized) {
+
+            if (operatorsSet.contains(token)) {
+
+                if (help.isEmpty()) {
+
+                    throw new InvalidDataInputException("Postfix string is invalid!");
+
+                }
+                String temp1 = help.pop();
+
+                if (help.isEmpty()) {
+
+                    throw new InvalidDataInputException("Postfix string is invalid!");
+
+                }
+                String temp2 = help.pop();
+
+                String temp3 = String.format("(%s %S %s)", temp2, token, temp1);
+
+                help.push(temp3);
+
+            } else {
+
+                help.push(token);
+
+            }
+
+        }
+
+        String out = help.pop();
+
+        if (!help.isEmpty()) {
+
+            throw new InvalidDataInputException("Postfix string is invalid!");
+
+        }
+
+        return out;
     }
+
 }
