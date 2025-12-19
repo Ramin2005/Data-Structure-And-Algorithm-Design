@@ -1,6 +1,7 @@
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Stack;
 
 public class ShapeShifter {
@@ -12,12 +13,12 @@ public class ShapeShifter {
      *
      * @param String - Infixed string
      * @param HashSet - HashSet of operators
-     * @param Hashtable - Hashtable of priority of operators
+     * @param HashMap - HashMap of priority of operators
      * @return String - Returns postfixed string
      * @throws InvalidDataInputException - If have invalid data in input
      */
     public static String inFixToPostFix(String inFixed, HashSet<String> operatorsSet,
-            Hashtable<String, Integer> operatorsPriorityTable) throws InvalidDataInputException {
+            HashMap<String, Integer> operatorsPriorityTable) throws InvalidDataInputException {
 
         // input check statement:
         if (operatorsSet.isEmpty()) {
@@ -223,7 +224,7 @@ public class ShapeShifter {
     }
 
     private static boolean priorityCheck(String newOperator, String topOperator,
-            Hashtable<String, Integer> operatorsPriorityTable) {
+            HashMap<String, Integer> operatorsPriorityTable) {
 
         int newOperatorPriority = operatorsPriorityTable.get(newOperator);
 
@@ -318,7 +319,7 @@ public class ShapeShifter {
         String temp2 = "e +  ((a + b) * c) ^ d";
 
         HashSet<String> op = new HashSet<>();
-        Hashtable<String, Integer> pr = new Hashtable<>();
+        HashMap<String, Integer> pr = new HashMap<>();
 
         op.add("+");
         pr.put("+", 1);
@@ -344,7 +345,7 @@ public class ShapeShifter {
             if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             }
-        } catch (Exception e) {
+        } catch (IOException | InterruptedException e) {
             System.out.println("Error trying to clear console.");
         }
     }
