@@ -10,11 +10,11 @@ public class ShapeShifter {
      *
      * Converts any infix string to postfix string.
      *
-     * @param inFixed - Infixed string
-     * @param operatorsSet - HashSet of operators
-     * @param operatorsPriorityTable - Hashtable of priority of operators
-     * @return string - Returns postfixed string
-     * @throws InvalidDataInputException
+     * @param String - Infixed string
+     * @param HashSet - HashSet of operators
+     * @param Hashtable - Hashtable of priority of operators
+     * @return String - Returns postfixed string
+     * @throws InvalidDataInputException - If have invalid data in input
      */
     public static String inFixToPostFix(String inFixed, HashSet<String> operatorsSet,
             Hashtable<String, Integer> operatorsPriorityTable) throws InvalidDataInputException {
@@ -243,10 +243,10 @@ public class ShapeShifter {
      *
      * Converts any postfix string to infix string.
      *
-     * @param postFixed - Postfixed string
-     * @param operatorsSet - HashSet of operators
-     * @return string - Returns infixed string
-     * @throws InvalidDataInputException
+     * @param String - Postfixed string
+     * @param HashSet - HashSet of operators
+     * @return String - Returns infixed string
+     * @throws InvalidDataInputException - If have invalid data in input
      */
     public static String postFixToInFix(String postFixed, HashSet<String> operatorsSet) {
 
