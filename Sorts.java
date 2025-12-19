@@ -171,7 +171,8 @@ public class Sorts {
 
     private static void Merge(int[] Array, int[] left, int[] right) {
 
-        int i = 0, j = 0, k = 0;
+        int i, j, k;
+        i = j = k = 0;
 
         while (i < left.length && j < right.length) {
 
