@@ -151,6 +151,53 @@ public class Sorts {
 
     // Merge"
     public static void MergeSort(int[] Array) {
+        if (Array.length <= 1) {
+            return;
+        }
+
+        int mid = Array.length / 2;
+
+        int[] left = new int[mid];
+        int[] right = new int[Array.length - mid];
+
+        System.arraycopy(Array, 0, left, 0, mid);
+        System.arraycopy(Array, mid, right, 0, Array.length - mid);
+
+        MergeSort(left);
+        MergeSort(right);
+
+        Merge(Array, left, right);
+    }
+
+    private static void Merge(int[] Array, int[] left, int[] right) {
+
+        int i = 0, j = 0, k = 0;
+
+        while (i < left.length && j < right.length) {
+
+            if (left[i] <= right[j]) {
+
+                Array[k++] = left[i++];
+
+            } else {
+
+                Array[k++] = right[j++];
+
+            }
+
+        }
+
+        while (i < left.length) {
+
+            Array[k++] = left[i++];
+
+        }
+
+        while (j < right.length) {
+
+            Array[k++] = right[j++];
+
+        }
 
     }
 
@@ -168,7 +215,7 @@ public class Sorts {
         }
         System.out.println("");
 
-        QuickSort(a, 0, a.length - 1);
+        MergeSort(a);
 
         for (int l : a) {
             System.out.print(l + " ");
