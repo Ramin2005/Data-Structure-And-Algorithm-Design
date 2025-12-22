@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class ShapeShifter {
 
-    // convert infix to postfix and prefix part:
+    // convert infixed to postfixed and prefixed part:
     /**
      *
      * help method for priority checking.
@@ -33,10 +33,10 @@ public class ShapeShifter {
 
     }
 
-    // infix to postfix:
+    // infixed to postfix:
     /**
      *
-     * Converts any infix string to postfix string.
+     * Converts any infixed string to postfixed string.
      *
      * @param String - Infixed string
      * @param HashSet - HashSet of operators
@@ -250,10 +250,10 @@ public class ShapeShifter {
         return out;
     }
 
-    // infix to prefix:
+    // infixed to prefix:
     /**
      *
-     * Converts any infix string to prefix string.
+     * Converts any infixed string to prefixed string.
      *
      * @param String - Infixed string
      * @param HashSet - HashSet of operators
@@ -467,11 +467,11 @@ public class ShapeShifter {
         return out;
     }
 
-    // convert postfix and prefix to infix part:
+    // convert postfixed and prefixed to infixed part:
     // postfixed to infix
     /**
      *
-     * Converts any postfix string to infix string.
+     * Converts any postfixed string to infixed string.
      *
      * @param String - Postfixed string
      * @param HashSet - HashSet of operators
@@ -507,14 +507,14 @@ public class ShapeShifter {
 
                 if (help.isEmpty()) {
 
-                    throw new InvalidDataInputException("Postfix string is invalid!");
+                    throw new InvalidDataInputException("Postfixed string is invalid!");
 
                 }
                 String temp1 = help.pop();
 
                 if (help.isEmpty()) {
 
-                    throw new InvalidDataInputException("Postfix string is invalid!");
+                    throw new InvalidDataInputException("Postfixed string is invalid!");
 
                 }
                 String temp2 = help.pop();
@@ -535,17 +535,17 @@ public class ShapeShifter {
 
         if (!help.isEmpty()) {
 
-            throw new InvalidDataInputException("Postfix string is invalid!");
+            throw new InvalidDataInputException("Postfixed string is invalid!");
 
         }
 
         return out;
     }
 
-    // prefixed to infix
+    // prefixed to infixed
     /**
      *
-     * Converts any prefix string to infix string.
+     * Converts any prefixed string to infixed string.
      *
      * @param String - Prefixed string
      * @param HashSet - HashSet of operators
@@ -583,14 +583,14 @@ public class ShapeShifter {
 
                 if (help.isEmpty()) {
 
-                    throw new InvalidDataInputException("Postfix string is invalid!");
+                    throw new InvalidDataInputException("Prefixed string is invalid!");
 
                 }
                 String temp1 = help.pop();
 
                 if (help.isEmpty()) {
 
-                    throw new InvalidDataInputException("Postfix string is invalid!");
+                    throw new InvalidDataInputException("Prefixed string is invalid!");
 
                 }
                 String temp2 = help.pop();
@@ -611,14 +611,90 @@ public class ShapeShifter {
 
         if (!help.isEmpty()) {
 
-            throw new InvalidDataInputException("Postfix string is invalid!");
+            throw new InvalidDataInputException("Prefixed string is invalid!");
 
         }
 
         return out;
     }
 
-    // postfix and prefix to 
+    // convert postfixed and prefixed to each other part:
+    // prefixed to postfixed
+    /**
+     *
+     * Converts any prefixed string to infixed string.
+     *
+     * @param String - Prefixed string
+     * @param HashSet - HashSet of operators
+     * @return String - Returns infixed string
+     * @throws InvalidDataInputException - If have invalid data in input
+     */
+    public static String preFixToPostFix(String preFixed, HashSet<String> operatorsSet) {
+
+        // input check statement:
+        if (operatorsSet.isEmpty()) {
+
+            throw new InvalidDataInputException("Operator set must have at least one element!");
+
+        }
+
+        // taking ready input for tokenize
+        String clone = preFixed
+                .replaceAll("\\s*([()])\\s*", " $1 ")
+                // first adds a space to the left end right of all "(" and ")" 
+                .replaceAll("\\s+", " ")
+                // after replace all spaces,tabs and next lines with one space
+                .trim();
+        // after remove spaces of the left and right
+
+        // help data structures:
+        String[] tokenized = clone.split(" ");
+
+        Stack<String> help = new Stack<>();
+
+        for (int i = tokenized.length - 1; i > -1; i--) {
+
+            String token = tokenized[i];
+
+            if (operatorsSet.contains(token)) {
+
+                if (help.isEmpty()) {
+
+                    throw new InvalidDataInputException("Postfixed string is invalid!");
+
+                }
+                String temp1 = help.pop();
+
+                if (help.isEmpty()) {
+
+                    throw new InvalidDataInputException("Postfixed string is invalid!");
+
+                }
+                String temp2 = help.pop();
+
+                String temp3 = String.format("(%s %s %s)", temp1, token, temp2);
+
+                help.push(temp3);
+
+            } else {
+
+                help.push(token);
+
+            }
+
+        }
+
+        String out = help.pop();
+
+        if (!help.isEmpty()) {
+
+            throw new InvalidDataInputException("Postfixed string is invalid!");
+
+        }
+
+        return out;
+    }
+
     // test part:
     // test main method
     public static void main(String[] args) {
