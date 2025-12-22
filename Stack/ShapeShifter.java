@@ -799,11 +799,14 @@ public class ShapeShifter {
         String prePost = preFixToPostFix(pre, op);
         String postPre = postFixToPreFix(post, op);
 
-        System.out.printf("infixed: %s\npostfixed: %s\nprefixed: %s\n", in, post, pre);
-
-        System.out.printf("postfix to infix method: %s\nprefix to infix method: %s\n", postIn, preIn);
-
-        System.out.printf("prefix to postfix method: %s\npostfix to prefix method: %s\n", prePost, postPre);
+        System.out.printf("%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s",
+                "Infixed string: ", in,
+                "Infix to postfixed: ", post,
+                "Infix to prefixed: ", pre,
+                "Prefix to postfix method: ", prePost,
+                "Postfix to prefix method: ", postPre,
+                "Postfix to infix method: ", postIn,
+                "Prefix to infix method: ", preIn);
 
     }
 
