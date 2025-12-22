@@ -6,6 +6,7 @@ import java.util.Stack;
 
 public class ShapeShifter {
 
+    // infix to postfix and prefix part:
     /**
      *
      * help method for priority checking.
@@ -332,7 +333,7 @@ public class ShapeShifter {
                     }
                     String temp2 = valuesStack.pop();
 
-                    String temp3 = String.format("%s %s %s", temp2, temp1, operatorsStackTop);
+                    String temp3 = String.format("%s %s %s", operatorsStackTop, temp2, temp1);
 
                     valuesStack.push(temp3);
                     operatorsStackTop = operatorsStack.pop();
@@ -376,7 +377,7 @@ public class ShapeShifter {
                         }
                         String temp2 = valuesStack.pop();
 
-                        String temp3 = String.format("%s %s %s", temp2, temp1, operatorsStackTop1);
+                        String temp3 = String.format("%s %s %s", operatorsStackTop1, temp2, temp1);
 
                         valuesStack.push(temp3);
 
@@ -403,7 +404,7 @@ public class ShapeShifter {
                                 }
                                 temp2 = valuesStack.pop();
 
-                                temp3 = String.format("%s %s %s", temp2, temp1, operatorsStackTop2);
+                                temp3 = String.format("%s %s %s", operatorsStackTop2, temp2, temp1);
 
                                 valuesStack.push(temp3);
                                 operatorsStack.push(operatorsStackTop1);
@@ -450,7 +451,7 @@ public class ShapeShifter {
             }
             String temp2 = valuesStack.pop();
 
-            String temp3 = String.format("%s %s %s", temp2, temp1, operatorsStack.pop());
+            String temp3 = String.format("%s %s %s", operatorsStack.pop(), temp2, temp1);
 
             valuesStack.push(temp3);
         }
@@ -466,6 +467,7 @@ public class ShapeShifter {
         return out;
     }
 
+    // postfix and prefix to infix part:
     // postfixed to infix
     /**
      *
@@ -618,10 +620,7 @@ public class ShapeShifter {
 
     //test method
     public static void main(String[] args) {
-        String temp1 = "e a b + c * d ^ + ";
-        String temp2 = "e +  ((a + b) * c) ^ d";
-        String temp3 = "x - y - z * (a + b)";
-        String temp4 = "+ b / * a c d";
+        String in = "e +  ((a + b) * c) ^ d";
 
         HashSet<String> op = new HashSet<>();
         HashMap<String, Integer> pr = new HashMap<>();
@@ -638,11 +637,12 @@ public class ShapeShifter {
         pr.put("^", 3);
 
         clearConsole();
-        System.out.println(inFixToPostFix(temp3, op, pr));
-        System.out.println(postFixToInFix(inFixToPostFix(temp2, op, pr), op));
-        System.out.println(inFixToPostFix(postFixToInFix(temp1, op), op, pr));
-        System.out.println(postFixToInFix(temp1, op));
-        System.out.println(preFixToInFix(temp4, op));
+
+        System.out.printf("infixed: %s\npostfixed: %s\nprefixed: %s",
+                in,
+                inFixToPostFix(in, op, pr),
+                inFixToPreFix(in, op, pr)
+        );
 
     }
 
