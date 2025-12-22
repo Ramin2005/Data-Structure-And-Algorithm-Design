@@ -799,7 +799,7 @@ public class ShapeShifter {
         String prePost = preFixToPostFix(pre, op);
         String postPre = postFixToPreFix(post, op);
 
-        System.out.printf("%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s",
+        String formatted = String.format("%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s\n%-26s%s",
                 "Infixed string: ", in,
                 "Infix to postfixed: ", post,
                 "Infix to prefixed: ", pre,
@@ -808,6 +808,7 @@ public class ShapeShifter {
                 "Postfix to infix method: ", postIn,
                 "Prefix to infix method: ", preIn);
 
+        System.out.println(formatted);
     }
 
     public static void clearConsole() {
