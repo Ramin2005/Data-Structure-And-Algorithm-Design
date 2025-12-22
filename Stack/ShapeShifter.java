@@ -622,11 +622,11 @@ public class ShapeShifter {
     // prefixed to postfixed
     /**
      *
-     * Converts any prefixed string to infixed string.
+     * Converts any prefixed string to postfixed string.
      *
      * @param String - Prefixed string
      * @param HashSet - HashSet of operators
-     * @return String - Returns infixed string
+     * @return String - Returns postfixed string
      * @throws InvalidDataInputException - If have invalid data in input
      */
     public static String preFixToPostFix(String preFixed, HashSet<String> operatorsSet) {
@@ -660,19 +660,19 @@ public class ShapeShifter {
 
                 if (help.isEmpty()) {
 
-                    throw new InvalidDataInputException("Postfixed string is invalid!");
+                    throw new InvalidDataInputException("Prefixed string is invalid!");
 
                 }
                 String temp1 = help.pop();
 
                 if (help.isEmpty()) {
 
-                    throw new InvalidDataInputException("Postfixed string is invalid!");
+                    throw new InvalidDataInputException("Prefixed string is invalid!");
 
                 }
                 String temp2 = help.pop();
 
-                String temp3 = String.format("(%s %s %s)", temp1, token, temp2);
+                String temp3 = String.format("%s %s %s", temp1, temp2, token);
 
                 help.push(temp3);
 
@@ -688,7 +688,7 @@ public class ShapeShifter {
 
         if (!help.isEmpty()) {
 
-            throw new InvalidDataInputException("Postfixed string is invalid!");
+            throw new InvalidDataInputException("Prefixed string is invalid!");
 
         }
 
@@ -716,11 +716,17 @@ public class ShapeShifter {
 
         clearConsole();
 
-        System.out.printf("infixed: %s\npostfixed: %s\nprefixed: %s",
-                in,
-                inFixToPostFix(in, op, pr),
-                inFixToPreFix(in, op, pr)
-        );
+        String post = inFixToPostFix(in, op, pr);
+        String pre = inFixToPreFix(in, op, pr);
+        String postIn = postFixToInFix(post, op);
+        String preIn = preFixToInFix(pre, op);
+        String prePost = preFixToPostFix(pre, op);
+
+        System.out.printf("infixed: %s\npostfixed: %s\nprefixed: %s\n", in, post, pre);
+
+        System.out.printf("postfix to infix method: %s\nprefix to infix method: %s\n", postIn, preIn);
+
+        System.out.printf("prefix to postfix method: %s\npostfix to prefix method: \n", prePost);
 
     }
 
