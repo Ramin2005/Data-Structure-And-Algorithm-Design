@@ -9,7 +9,7 @@ public class ShapeShifter {
     /**
      *
      * help method for priority checking.
-     * 
+     *
      * @param String - newOperator
      * @param String - topOperator
      * @param HashMap - HashMap of priority of operators
@@ -249,18 +249,18 @@ public class ShapeShifter {
         return out;
     }
 
-    // infix to postfix:
+    // infix to prefix:
     /**
      *
-     * Converts any infix string to postfix string.
+     * Converts any infix string to prefix string.
      *
      * @param String - Infixed string
      * @param HashSet - HashSet of operators
      * @param HashMap - HashMap of priority of operators
-     * @return String - Returns postfixed string
+     * @return String - Returns prefixed string
      * @throws InvalidDataInputException - If have invalid data in input
      */
-    public static String inFixToPostFix(String inFixed, HashSet<String> operatorsSet,
+    public static String inFixToPreFix(String inFixed, HashSet<String> operatorsSet,
             HashMap<String, Integer> operatorsPriorityTable) throws InvalidDataInputException {
 
         // input check statement:
