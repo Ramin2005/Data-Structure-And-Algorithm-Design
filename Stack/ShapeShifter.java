@@ -619,6 +619,80 @@ public class ShapeShifter {
     }
 
     // convert postfixed and prefixed to each other part:
+    // postfixed to prefix
+    /**
+     *
+     * Converts any postfixed string to prefixed string.
+     *
+     * @param String - Postfixed string
+     * @param HashSet - HashSet of operators
+     * @return String - Returns prefixed string
+     * @throws InvalidDataInputException - If have invalid data in input
+     */
+    public static String postFixToPreFix(String postFixed, HashSet<String> operatorsSet) {
+
+        // input check statement:
+        if (operatorsSet.isEmpty()) {
+
+            throw new InvalidDataInputException("Operator set must have at least one element!");
+
+        }
+
+        // taking ready input for tokenize
+        String clone = postFixed
+                .replaceAll("\\s*([()])\\s*", " $1 ")
+                // first adds a space to the left end right of all "(" and ")" 
+                .replaceAll("\\s+", " ")
+                // after replace all spaces,tabs and next lines with one space
+                .trim();
+        // after remove spaces of the left and right
+
+        // help data structures:
+        String[] tokenized = clone.split(" ");
+
+        Stack<String> help = new Stack<>();
+
+        for (String token : tokenized) {
+
+            if (operatorsSet.contains(token)) {
+
+                if (help.isEmpty()) {
+
+                    throw new InvalidDataInputException("Postfixed string is invalid!");
+
+                }
+                String temp1 = help.pop();
+
+                if (help.isEmpty()) {
+
+                    throw new InvalidDataInputException("Postfixed string is invalid!");
+
+                }
+                String temp2 = help.pop();
+
+                String temp3 = String.format("%s %s %s", token, temp2, temp1);
+
+                help.push(temp3);
+
+            } else {
+
+                help.push(token);
+
+            }
+
+        }
+
+        String out = help.pop();
+
+        if (!help.isEmpty()) {
+
+            throw new InvalidDataInputException("Postfixed string is invalid!");
+
+        }
+
+        return out;
+    }
+
     // prefixed to postfixed
     /**
      *
@@ -698,6 +772,8 @@ public class ShapeShifter {
     // test part:
     // test main method
     public static void main(String[] args) {
+
+        // testing infixed string
         String in = "e +  ((a + b) * c) ^ d";
 
         HashSet<String> op = new HashSet<>();
@@ -721,12 +797,13 @@ public class ShapeShifter {
         String postIn = postFixToInFix(post, op);
         String preIn = preFixToInFix(pre, op);
         String prePost = preFixToPostFix(pre, op);
+        String postPre = postFixToPreFix(post, op);
 
         System.out.printf("infixed: %s\npostfixed: %s\nprefixed: %s\n", in, post, pre);
 
         System.out.printf("postfix to infix method: %s\nprefix to infix method: %s\n", postIn, preIn);
 
-        System.out.printf("prefix to postfix method: %s\npostfix to prefix method: \n", prePost);
+        System.out.printf("prefix to postfix method: %s\npostfix to prefix method: %s\n", prePost, postPre);
 
     }
 
