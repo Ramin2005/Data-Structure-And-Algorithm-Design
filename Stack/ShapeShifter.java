@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class ShapeShifter {
 
-    // infix to postfix and prefix part:
+    // convert infix to postfix and prefix part:
     /**
      *
      * help method for priority checking.
@@ -467,7 +467,7 @@ public class ShapeShifter {
         return out;
     }
 
-    // postfix and prefix to infix part:
+    // convert postfix and prefix to infix part:
     // postfixed to infix
     /**
      *
@@ -618,7 +618,9 @@ public class ShapeShifter {
         return out;
     }
 
-    //test method
+    // postfix and prefix to 
+    // test part:
+    // test main method
     public static void main(String[] args) {
         String in = "e +  ((a + b) * c) ^ d";
 
