@@ -11,9 +11,9 @@ public class ShapeShifter {
      *
      * help method for priority checking.
      *
-     * @param String - newOperator
-     * @param String - topOperator
-     * @param HashMap - HashMap of priority of operators
+     * @param newOperator - newOperator
+     * @param topOperator - topOperator
+     * @param operatorsPriorityTable - HashMap of priority of operators
      * @return
      */
     private static boolean priorityCheck(String newOperator, String topOperator,
@@ -38,11 +38,11 @@ public class ShapeShifter {
      *
      * Converts any infixed string to postfixed string.
      *
-     * @param String - Infixed string
-     * @param HashSet - HashSet of operators
-     * @param HashMap - HashMap of priority of operators
+     * @param inFixed - Infixed string
+     * @param operatorsSet - HashSet of operators
+     * @param operatorsPriorityTable - HashMap of priority of operators
      * @return String - Returns postfixed string
-     * @throws InvalidDataInputException - If have invalid data in input
+     * @throws InvalidDataInputException If have invalid data in input
      */
     public static String inFixToPostFix(String inFixed, HashSet<String> operatorsSet,
             HashMap<String, Integer> operatorsPriorityTable) throws InvalidDataInputException {
@@ -255,11 +255,11 @@ public class ShapeShifter {
      *
      * Converts any infixed string to prefixed string.
      *
-     * @param String - Infixed string
-     * @param HashSet - HashSet of operators
-     * @param HashMap - HashMap of priority of operators
+     * @param inFixed - Infixed string
+     * @param operatorsSet - HashSet of operators
+     * @param operatorsPriorityTable - HashMap of priority of operators
      * @return String - Returns prefixed string
-     * @throws InvalidDataInputException - If have invalid data in input
+     * @throws InvalidDataInputException If have invalid data in input
      */
     public static String inFixToPreFix(String inFixed, HashSet<String> operatorsSet,
             HashMap<String, Integer> operatorsPriorityTable) throws InvalidDataInputException {
@@ -473,10 +473,10 @@ public class ShapeShifter {
      *
      * Converts any postfixed string to infixed string.
      *
-     * @param String - Postfixed string
-     * @param HashSet - HashSet of operators
+     * @param postFixed - Postfixed string
+     * @param operatorsSet - HashSet of operators
      * @return String - Returns infixed string
-     * @throws InvalidDataInputException - If have invalid data in input
+     * @throws InvalidDataInputException If have invalid data in input
      */
     public static String postFixToInFix(String postFixed, HashSet<String> operatorsSet) {
 
@@ -547,10 +547,10 @@ public class ShapeShifter {
      *
      * Converts any prefixed string to infixed string.
      *
-     * @param String - Prefixed string
-     * @param HashSet - HashSet of operators
+     * @param preFixed - Prefixed string
+     * @param operatorsSet - HashSet of operators
      * @return String - Returns infixed string
-     * @throws InvalidDataInputException - If have invalid data in input
+     * @throws InvalidDataInputException If have invalid data in input
      */
     public static String preFixToInFix(String preFixed, HashSet<String> operatorsSet) {
 
@@ -624,10 +624,10 @@ public class ShapeShifter {
      *
      * Converts any postfixed string to prefixed string.
      *
-     * @param String - Postfixed string
-     * @param HashSet - HashSet of operators
+     * @param postFixed - Postfixed string
+     * @param operatorsSet - HashSet of operators
      * @return String - Returns prefixed string
-     * @throws InvalidDataInputException - If have invalid data in input
+     * @throws InvalidDataInputException If have invalid data in input
      */
     public static String postFixToPreFix(String postFixed, HashSet<String> operatorsSet) {
 
@@ -698,10 +698,10 @@ public class ShapeShifter {
      *
      * Converts any prefixed string to postfixed string.
      *
-     * @param String - Prefixed string
-     * @param HashSet - HashSet of operators
+     * @param preFixed - Prefixed string
+     * @param operatorsSet - HashSet of operators
      * @return String - Returns postfixed string
-     * @throws InvalidDataInputException - If have invalid data in input
+     * @throws InvalidDataInputException If have invalid data in input
      */
     public static String preFixToPostFix(String preFixed, HashSet<String> operatorsSet) {
 
