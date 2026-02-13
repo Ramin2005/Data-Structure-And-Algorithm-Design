@@ -67,6 +67,8 @@ public class OneWayLinkedList {
      *
      * - complexity order: O(n)
      *
+     * @param value
+     * @param index
      */
     public void insert(Object value, int index) {
 
@@ -104,6 +106,14 @@ public class OneWayLinkedList {
 
     }
 
+    /**
+     * Return value of target index
+     *
+     * - complexity order: O(n)
+     *
+     * @param index
+     * @return
+     */
     public Object getObjectAt(int index) {
 
         if (index < 0) {
