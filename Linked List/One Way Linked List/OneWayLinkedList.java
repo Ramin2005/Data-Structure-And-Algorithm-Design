@@ -1,5 +1,4 @@
 
-
 public class OneWayLinkedList {
 
     private Node head = null;
@@ -38,6 +37,8 @@ public class OneWayLinkedList {
      *
      * Add value to end of link list
      *
+     * - complexity order: O(n)
+     *
      * @param value
      *
      */
@@ -61,15 +62,23 @@ public class OneWayLinkedList {
     }
 
     /**
-     * 
+     *
      * Add new value to target index
-     * 
+     *
+     * - complexity order: O(n)
+     *
      */
     public void insert(Object value, int index) {
 
-        if (index < 0 || index > this.size) {
+        if (index < 0) {
 
-            throw new RuntimeException("Index out of bounds");
+            throw new RuntimeException("Invalid index!");
+
+        }
+
+        if (index > this.size) {
+
+            throw new RuntimeException("Index out of bounds!");
 
         }
 
@@ -90,14 +99,45 @@ public class OneWayLinkedList {
 
             temp1.setNext(temp3);
             temp2.setNext(temp1);
-            
+
         }
 
     }
 
+    public Object getObjectAt(int index) {
+
+        if (index < 0) {
+
+            throw new RuntimeException("Invalid index!");
+
+        }
+
+        if (index >= this.size) {
+
+            throw new RuntimeException("Index out of bounds!");
+
+        }
+
+        Object out;
+
+        Node temp = this.head;
+
+        for (int i = 0; i < index; i++) {
+
+            temp = temp.getNext();
+
+        }
+
+        out = temp.getValue();
+
+        return out;
+    }
+
     /**
      *
-     * return pop head node value with complexity of order O(1)
+     * return pop head node value
+     *
+     * - complexity order: O(1)
      *
      * @throws Runtime Exception if list is empty
      * @return Head Node value
@@ -131,7 +171,9 @@ public class OneWayLinkedList {
 
     /**
      *
-     * return pop last node value with complexity of order O(1)
+     * return pop last node value
+     *
+     * - complexity order: O(n)
      *
      * @throws Runtime Exception if list is empty
      * @return Last Node value
