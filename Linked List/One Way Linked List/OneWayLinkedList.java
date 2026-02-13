@@ -1,8 +1,10 @@
 
+
 public class OneWayLinkedList {
 
     private Node head = null;
     private Node last = null;
+
     private int size = 0;
 
     public OneWayLinkedList() {
@@ -32,6 +34,13 @@ public class OneWayLinkedList {
 
     }
 
+    /**
+     *
+     * Add value to end of link list
+     *
+     * @param value
+     *
+     */
     public void add(Object value) {
 
         Node temp = new Node(value);
@@ -51,7 +60,49 @@ public class OneWayLinkedList {
 
     }
 
-    public Object popFirst() {
+    /**
+     * 
+     * Add new value to target index
+     * 
+     */
+    public void insert(Object value, int index) {
+
+        if (index < 0 || index > this.size) {
+
+            throw new RuntimeException("Index out of bounds");
+
+        }
+
+        Node temp1 = new Node(value);
+
+        if (index == 0) {
+            temp1.setNext(this.head);
+            this.head = temp1;
+        } else {
+
+            Node temp2 = this.head;
+            Node temp3 = this.head;
+
+            for (int i = 0; i < index; i++) {
+                temp2 = temp3;
+                temp3 = temp3.getNext();
+            }
+
+            temp1.setNext(temp3);
+            temp2.setNext(temp1);
+            
+        }
+
+    }
+
+    /**
+     *
+     * return pop head node value with complexity of order O(1)
+     *
+     * @throws Runtime Exception if list is empty
+     * @return Head Node value
+     */
+    public Object pop() {
 
         if (isEmpty()) {
 
@@ -78,6 +129,13 @@ public class OneWayLinkedList {
         return out;
     }
 
+    /**
+     *
+     * return pop last node value with complexity of order O(1)
+     *
+     * @throws Runtime Exception if list is empty
+     * @return Last Node value
+     */
     public Object popLast() {
 
         if (isEmpty()) {
@@ -110,43 +168,6 @@ public class OneWayLinkedList {
             out = temp.getValue();
             --this.size;
 
-        }
-
-        return out;
-    }
-
-    public Object pop(int n) {
-
-        if (isEmpty()) {
-
-            throw new RuntimeException("List is empty!");
-
-        }
-
-        if (n >= this.size) {
-
-            throw new RuntimeException("Index out of bounds!");
-
-        }
-
-        Object out;
-
-        if (this.size == 1) {
-
-            out = this.head.getValue();
-            this.head = this.last = null;
-            --this.size;
-
-        } else {
-            Node temp = this.head;
-
-            for (int i = 1; i < n + 1; i++) {
-
-                temp = temp.getNext();
-
-            }
-
-            out = temp.getValue();
         }
 
         return out;
