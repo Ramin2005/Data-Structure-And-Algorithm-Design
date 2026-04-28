@@ -1,7 +1,7 @@
 public class PriorityQueue {
 
-    private CustomLinkList data;
-    private CustomLinkList lastValue;
+    private CustomNode data;
+    private CustomNode lastValue;
     private int size;
 
     private int minPriorityIndex = -1;
@@ -14,10 +14,10 @@ public class PriorityQueue {
         this.size = 0;
     }
 
-    public PriorityQueue(CustomLinkList data) {
+    public PriorityQueue(CustomNode data) {
         this.data = data;
 
-        CustomLinkList temp = data;
+        CustomNode temp = data;
 
         int index = 0;
         int tempPriority;
@@ -64,7 +64,7 @@ public class PriorityQueue {
 
     // EnQueue Method:
     public void enQueue(Object value, int priority) {
-        CustomLinkList temp = new CustomLinkList(value, priority);
+        CustomNode temp = new CustomNode(value, priority);
 
         if (this.size == 0) {
 
@@ -112,7 +112,7 @@ public class PriorityQueue {
 
         if (priority == this.maxPriority || priority == this.minPriority) {
 
-            CustomLinkList temp = data;
+            CustomNode temp = data;
 
             int index = 0;
             int tempPriority;
@@ -163,8 +163,8 @@ public class PriorityQueue {
 
         Object out = null;
 
-        CustomLinkList beforeTemp = null;
-        CustomLinkList nextTemp = this.data;
+        CustomNode beforeTemp = null;
+        CustomNode nextTemp = this.data;
 
         while (out == null && nextTemp != null) {
 
@@ -174,7 +174,7 @@ public class PriorityQueue {
                 beforeTemp.setNextNode(nextTemp.getNextNode());
                 --this.size;
 
-                CustomLinkList temp = this.data;
+                CustomNode temp = this.data;
 
                 int index = 0;
                 int tempPriority;
@@ -254,8 +254,8 @@ public class PriorityQueue {
 
         Object out = null;
 
-        CustomLinkList beforeTemp = null;
-        CustomLinkList nextTemp = this.data;
+        CustomNode beforeTemp = null;
+        CustomNode nextTemp = this.data;
 
         while (out == null && nextTemp != null) {
 
@@ -265,7 +265,7 @@ public class PriorityQueue {
                 beforeTemp.setNextNode(nextTemp.getNextNode());
                 --this.size;
 
-                CustomLinkList temp = this.data;
+                CustomNode temp = this.data;
 
                 int index = 0;
                 int tempPriority;
@@ -344,7 +344,7 @@ public class PriorityQueue {
             throw new RuntimeException("Index out of bounds!");
         }
 
-        CustomLinkList temp = this.data;
+        CustomNode temp = this.data;
         for (int i = 1; i < index; i++) {
 
             temp = temp.getNextNode();
@@ -378,7 +378,7 @@ public class PriorityQueue {
             throw new RuntimeException("Index out of bounds!");
         }
 
-        CustomLinkList temp = this.data;
+        CustomNode temp = this.data;
         for (int i = 1; i < index; i++) {
 
             temp = temp.getNextNode();
@@ -399,7 +399,7 @@ public class PriorityQueue {
             throw new RuntimeException("Index out of bounds!");
         }
 
-        CustomLinkList temp = this.data;
+        CustomNode temp = this.data;
         for (int i = 1; i < index; i++) {
 
             temp = temp.getNextNode();
@@ -456,7 +456,7 @@ public class PriorityQueue {
 
         Object out = null;
 
-        CustomLinkList Temp = this.data;
+        CustomNode Temp = this.data;
 
         while (out == null && Temp != null) {
 
@@ -495,7 +495,7 @@ public class PriorityQueue {
 
         Object out = null;
 
-        CustomLinkList Temp = this.data;
+        CustomNode Temp = this.data;
 
         while (out == null && Temp != null) {
 

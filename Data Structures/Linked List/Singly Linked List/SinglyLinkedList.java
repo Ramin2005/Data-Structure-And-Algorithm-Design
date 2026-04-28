@@ -1,16 +1,16 @@
 
-public class OneWayLinkedList {
+public class SinglyLinkedList {
 
     private Node head = null;
     private Node last = null;
 
     private int size = 0;
 
-    public OneWayLinkedList() {
+    public SinglyLinkedList() {
 
     }
 
-    public OneWayLinkedList(Object[] values) {
+    public SinglyLinkedList(Object[] values) {
 
         for (Object value : values) {
 

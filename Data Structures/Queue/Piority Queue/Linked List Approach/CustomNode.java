@@ -1,23 +1,23 @@
 
 /**
- * This link list customized to stores priority value for each value and any value type.
+ * Customized node to stores priority value for each value and any value type.
  */
-public class CustomLinkList {
+public class CustomNode {
 
     private Object value;
     private int priority;
-    private CustomLinkList next;
+    private CustomNode next;
 
-    public CustomLinkList() {
+    public CustomNode() {
 
     }
 
-    public CustomLinkList(Object value, int priority) {
+    public CustomNode(Object value, int priority) {
         this.value = value;
         this.priority = priority;
     }
 
-    public CustomLinkList(int value[], int priority, CustomLinkList next) {
+    public CustomNode(int value[], int priority, CustomNode next) {
         this.value = value;
         this.priority = priority;
         this.next = next;
@@ -43,11 +43,11 @@ public class CustomLinkList {
         return (this.next != null);
     }
 
-    public CustomLinkList getNextNode() {
+    public CustomNode getNextNode() {
         return this.next;
     }
 
-    public void setNextNode(CustomLinkList newNext) {
+    public void setNextNode(CustomNode newNext) {
         this.next = newNext;
     }
 
