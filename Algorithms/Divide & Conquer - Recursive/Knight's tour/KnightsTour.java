@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class Knight {
+public class KnightsTour {
 
     //f(board, size, startPosition, endPosition, 1, resultSet)
     public static void f(int[][] board, int size, int[] position, int[] endPosition, int move, Set<int[][]> resultSet) {
